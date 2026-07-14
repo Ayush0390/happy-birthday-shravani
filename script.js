@@ -186,7 +186,7 @@ const today = new Date();
 
 let year = today.getFullYear();
 
-let birthday = new Date(new Date().getTime() + 60000);
+let birthday = new Date(year,6,28);
 
 if(today > birthday){
 
