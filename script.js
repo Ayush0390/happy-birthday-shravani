@@ -204,7 +204,9 @@ if (today.getTime() === birthdayToday.getTime()) {
     document.getElementById("minutes").innerHTML = 0;
     document.getElementById("seconds").innerHTML = 0;
 
+    setTimeout(() => {
     birthdayCelebration();
+}, 500);
 
 } else {
 
