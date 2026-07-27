@@ -182,19 +182,67 @@ musicBtn.addEventListener("click",()=>{
 // COUNTDOWN
 // =====================================================
 
-const today = new Date();
+const now = new Date();
 
-let year = today.getFullYear();
+const today = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate()
+);
 
-let birthday = new Date(year,6,28);
+const birthdayToday = new Date(
+    now.getFullYear(),
+    6,
+    28
+);
 
-if(today > birthday){
+// If today is 28 July, show the birthday celebration
+if (today.getTime() === birthdayToday.getTime()) {
 
-    birthday = new Date(year+1,6,28);
+    document.getElementById("days").innerHTML = 0;
+    document.getElementById("hours").innerHTML = 0;
+    document.getElementById("minutes").innerHTML = 0;
+    document.getElementById("seconds").innerHTML = 0;
+
+    birthdayCelebration();
+
+} else {
+
+    let year = now.getFullYear();
+
+    let birthday = new Date(year, 6, 28);
+
+    if (now > birthday) {
+        birthday = new Date(year + 1, 6, 28);
+    }
+
+    birthday = birthday.getTime();
+
+    const countdownInterval = setInterval(() => {
+
+        const distance = birthday - new Date().getTime();
+
+        if (distance <= 0) {
+            clearInterval(countdownInterval);
+            birthdayCelebration();
+            return;
+        }
+
+        document.getElementById("days").innerHTML =
+            Math.floor(distance / (1000 * 60 * 60 * 24));
+
+        document.getElementById("hours").innerHTML =
+            Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        document.getElementById("minutes").innerHTML =
+            Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById("seconds").innerHTML =
+            Math.floor((distance % (1000 * 60)) / 1000);
+
+    }, 1000);
 
 }
-
-birthday = birthday.getTime();
 
 const countdownInterval = setInterval(()=>{
 
