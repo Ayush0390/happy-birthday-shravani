@@ -133,6 +133,14 @@ function unlockWebsite(messageText){
 
         website.style.display="block";
 
+        const today = new Date();
+
+        if (today.getDate() === 28 && today.getMonth() === 6) {
+            setTimeout(() => {
+                birthdayCelebration();
+            }, 1000);
+        }
+
         typingText.innerHTML="";
 
         index=0;
@@ -204,9 +212,7 @@ if (today.getTime() === birthdayToday.getTime()) {
     document.getElementById("minutes").innerHTML = 0;
     document.getElementById("seconds").innerHTML = 0;
 
-    setTimeout(() => {
-    birthdayCelebration();
-}, 500);
+
 
 } else {
 
